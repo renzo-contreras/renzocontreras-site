@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Renzo Contreras</title>
+  <meta name="description" content="Renzo Contreras, Chilean mixed-media artist based in Denver, Colorado.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Syne+Tactile&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --white: #ffffff;
+      --black: #000000;
+      --font-display: "Syne Tactile", cursive;
+      --font-serif: "Instrument Serif", serif;
+      --nav-h: 64px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-serif);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* NAV (desktop) */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: var(--nav-h);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(24px, 6.5vw, 126px);
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 49px;
+    }
+    .nav__group { display: flex; gap: clamp(48px, 12vw, 230px); }
+    .nav__group--right { gap: clamp(48px, 10vw, 240px); }
+    .nav a:hover { text-decoration: underline; }
+
+    .nav__menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      font: inherit;
+      color: inherit;
+      cursor: pointer;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      height: calc(100vh - var(--nav-h));
+      min-height: 560px;
+      max-height: 1018px;
+      color: var(--white);
+      /* Fallback tones until the real image is added in assets/ */
+      background-color: #7a7f93;
+      background-image:
+        url("assets/hero-desktop.jpg"),
+        linear-gradient(120deg, #6b5b4d 0%, #8a8f9c 45%, #a7aed6 100%);
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding-bottom: 110px;
+      text-align: center;
+    }
+
+    .hero__logo {
+      width: 87px;
+      height: 83px;
+      display: block;
+      margin-bottom: 100px;
+    }
+
+    .hero__tagline {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: 44px;
+      line-height: 49px;
+    }
+
+    .hero__title {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -0.17em;
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: 10vw;
+      line-height: 1;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    /* MOBILE MENU OVERLAY */
+    .menu {
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background: var(--white);
+      display: none;
+      flex-direction: column;
+      align-items: flex-end;
+      padding: 50px 24px;
+      font-family: var(--font-display);
+      font-size: 30px;
+      line-height: 49px;
+      gap: 8px;
+    }
+    .menu.is-open { display: flex; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      :root { --nav-h: 104px; }
+
+      .nav {
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 0 24px 4px;
+      }
+      .nav__group { display: none; }
+      .nav__menu-btn { display: block; font-size: 30px; line-height: 49px; }
+
+      .hero {
+        height: 541px;
+        min-height: 0;
+        background-image:
+          url("assets/hero-mobile.jpg"),
+          linear-gradient(160deg, #8a8f9c 0%, #6b5b4d 60%, #a7aed6 100%);
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 98px 16px 0;
+        text-align: left;
+      }
+
+      .hero__logo {
+        width: 57px;
+        height: 55px;
+        margin-bottom: 91px;
+      }
+
+      .hero__tagline {
+        font-size: 28px;
+        line-height: 30px;
+      }
+
+      .hero__title {
+        font-size: 15.3vw;
+        bottom: -0.18em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <nav class="nav__group" aria-label="Primary left">
+      <a href="#">Home</a>
+      <a href="#work">Work</a>
+    </nav>
+    <nav class="nav__group nav__group--right" aria-label="Primary right">
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav__menu-btn" id="menuBtn" aria-expanded="false" aria-controls="menu">Menu</button>
+  </header>
+
+  <div class="menu" id="menu">
+    <button class="nav__menu-btn" id="menuClose" style="display:block">Close</button>
+    <a href="#">Home</a>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <main>
+    <section class="hero">
+      <img class="hero__logo" src="assets/rc-logo.svg" alt="RC logo">
+      <p class="hero__tagline">Chilean mixed-media artist<br>based in Denver, Colorado</p>
+      <h1 class="hero__title">Renzo Contreras</h1>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      var menu = document.getElementById('menu');
+      var openBtn = document.getElementById('menuBtn');
+      var closeBtn = document.getElementById('menuClose');
+
+      function setOpen(open) {
+        menu.classList.toggle('is-open', open);
+        openBtn.setAttribute('aria-expanded', String(open));
+      }
+
+      openBtn.addEventListener('click', function () { setOpen(true); });
+      closeBtn.addEventListener('click', function () { setOpen(false); });
+      menu.addEventListener('click', function (e) {
+        if (e.target.tagName === 'A') setOpen(false);
+      });
+    })();
+  </script>
+</body>
+</html>
